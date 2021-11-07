@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  	   <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory> 
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>P2_AP1_PrandiFabiel_20190281</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Buscar.png" />
+    <None Remove="Resources\Eliminar.png" />
+    <None Remove="Resources\Guardar.png" />
+    <None Remove="Resources\Nuevo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Buscar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Guardar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Nuevo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameWorkCore.SQLite" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameWorkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DATA\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Eliminar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DATA\ProyectoTareas.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

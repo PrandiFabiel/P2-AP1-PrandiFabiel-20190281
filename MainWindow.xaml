@@ -1,0 +1,24 @@
+﻿<Window x:Class="P2_AP1_PrandiFabiel_20190281.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P2_AP1_PrandiFabiel_20190281"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Menu Height = "20" VerticalAlignment = "Top" >
+
+                <MenuItem Header ="Registros" >
+                    <MenuItem x:Name = "Registro" Click="Registro_Click" Header = "Registro de proyectos" ></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header = "Consultas" >
+                    <MenuItem x:Name = "Consultas" Click="Consultas_Click" Header = "Proyectos" ></MenuItem>
+                    <MenuItem x:Name = "tiposDeTarea" Click="tiposDeTarea_Click" Header = "Tipos de tareas" ></MenuItem>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+    </Grid>
+</Window>
