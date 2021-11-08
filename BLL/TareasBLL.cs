@@ -33,5 +33,25 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             }
             return lista;
         }
+
+        public static List<Tareas> GetTareas()
+        {
+            List<Tareas> lista = new List<Tareas>();
+
+            Contexto contexto = new Contexto();
+            try
+            {
+                lista = contexto.Tareas.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return lista;
+        }
     }
 }

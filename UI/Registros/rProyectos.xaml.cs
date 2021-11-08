@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P2_AP1_PrandiFabiel_20190281.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace P2_AP1_PrandiFabiel_20190281.UI.Registros
         public rProyectos()
         {
             InitializeComponent();
+            TipoTareaComboBox.ItemsSource = TareasBLL.GetList(s => true);
+            TipoTareaComboBox.SelectedValuePath = "TareaId";
+            TipoTareaComboBox.DisplayMemberPath = "TipoTarea";
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
