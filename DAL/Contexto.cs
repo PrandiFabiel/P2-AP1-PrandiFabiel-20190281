@@ -11,6 +11,7 @@ namespace P2_AP1_PrandiFabiel_20190281.DAL
     public class Contexto : DbContext
     {
         public DbSet<Tareas> Tareas { get; set; }
+        public DbSet<Proyectos> Proyectos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
