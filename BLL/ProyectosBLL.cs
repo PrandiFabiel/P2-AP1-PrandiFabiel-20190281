@@ -4,6 +4,7 @@ using P2_AP1_PrandiFabiel_20190281.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -91,7 +92,13 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
 
             try
             {
+                var proyecto = contexto.Proyectos.Find(id);
 
+                if (proyecto != null)
+                {
+                    contexto.Proyectos.Remove(proyecto);
+                    paso = contexto.SaveChanges() > 0; 
+                }
             }
             catch (Exception)
             {
@@ -104,6 +111,76 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             }
 
             return paso; 
+        }
+
+        public static List<Proyectos> GetList(Expression<Func<Proyectos, bool>> criterio)
+        {
+            List<Proyectos> Lista = new List<Proyectos>();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                Lista = contexto.Proyectos.Where(criterio).ToList(); 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose(); 
+            }
+
+            return Lista; 
+        }
+
+        public static bool Existe(int id)
+        {
+            bool encontrado = false;
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                encontrado = contexto.Proyectos.Any(p => p.ProyectoId == id); 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose(); 
+            }
+
+            return encontrado; 
+        }
+
+        public static Proyectos Buscar(int id)
+        {
+            Proyectos proyecto = new Proyectos();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                proyecto = contexto.Proyectos
+                    .Where(p => p.ProyectoId == id)
+                    .Include(p => p.Detalle)
+                    .ThenInclude(t => t.Tipo)
+                    .SingleOrDefault(); 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return proyecto; 
         }
     }
 }
