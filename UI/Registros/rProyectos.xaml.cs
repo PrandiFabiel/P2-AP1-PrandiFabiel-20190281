@@ -1,4 +1,5 @@
 ﻿using P2_AP1_PrandiFabiel_20190281.BLL;
+using P2_AP1_PrandiFabiel_20190281.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace P2_AP1_PrandiFabiel_20190281.UI.Registros
     /// </summary>
     public partial class rProyectos : Window
     {
+
+        private Proyectos proyectos = new Proyectos(); 
         public rProyectos()
         {
             InitializeComponent();

@@ -25,7 +25,7 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             return paso; 
         }
 
-        public static bool Insertar(Proyectos proyecto)
+        private static bool Insertar(Proyectos proyecto)
         {
             //Revisar antes de compilar 
             Contexto contexto = new Contexto();
@@ -54,7 +54,7 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             return paso; 
         }
 
-        public static bool Modificar(Proyectos proyecto)
+        private static bool Modificar(Proyectos proyecto)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
