@@ -75,11 +75,16 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
                     item.Tipo = tarea;
                     contexto.Entry(item.Tipo).State = EntityState.Modified; 
                 }
+
+
                 contexto.Database.ExecuteSqlRaw($"Delete From ProyectosDetalle Where ProyectoId={proyecto.ProyectoId}");
 
                 foreach (var item in proyecto.Detalle)
                 {
-                    contexto.Entry(item).State = EntityState.Added; 
+                    var tarea = contexto.Tareas.Find(item.Tipo.TareaId);
+                    tarea.TiempoAcumulado += item.Tiempo;
+                    item.Tipo = tarea;
+                    contexto.Entry(item.Tipo).State = EntityState.Modified;
                 }
 
                 contexto.Entry(proyecto).State = EntityState.Modified;
