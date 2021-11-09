@@ -81,7 +81,7 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
 
                 foreach (var item in proyecto.Detalle)
                 {
-                    contexto.Entry(item.Tipo).State = EntityState.Added;
+                    contexto.Entry(item).State = EntityState.Added;
                     var tarea = contexto.Tareas.Find(item.Tipo.TareaId);
                     tarea.TiempoAcumulado += item.Tiempo;
                     item.Tipo = tarea;
