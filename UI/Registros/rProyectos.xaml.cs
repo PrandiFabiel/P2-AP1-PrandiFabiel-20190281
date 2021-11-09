@@ -84,6 +84,7 @@ namespace P2_AP1_PrandiFabiel_20190281.UI.Registros
             var detalle = new ProyectosDetalle
             {
                 ProyectoId = this.proyectos.ProyectoId,
+                TareaId = Convert.ToInt32(TipoTareaComboBox.SelectedValue.ToString()),
                 Tipo = ((Tareas)TipoTareaComboBox.SelectedItem),
                 Requerimiento = (RequerimientoTextBox.Text),
                 Tiempo = Convert.ToSingle(TiempoTextBox.Text)
@@ -104,7 +105,7 @@ namespace P2_AP1_PrandiFabiel_20190281.UI.Registros
             try
             {
                 var detalle = (ProyectosDetalle)DetalleDataGrid.SelectedItem;
-                double Total = Convert.ToDouble(TiempoTextBox.Text);
+                
                 if(DetalleDataGrid.Items.Count >= 1 && DetalleDataGrid.SelectedIndex <= DetalleDataGrid.Items.Count - 1)
                 {
                     proyectos.TiempoTotal -= detalle.Tiempo;
