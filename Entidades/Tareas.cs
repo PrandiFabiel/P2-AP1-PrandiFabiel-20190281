@@ -12,6 +12,6 @@ namespace P2_AP1_PrandiFabiel_20190281.Entidades
         [Key]  
         public int TareaId { get; set; }
         public string TipoTarea { get; set; }
-        public int TiempoAcumulado { get; set; }
+        public double TiempoAcumulado { get; set; }
     }
 }

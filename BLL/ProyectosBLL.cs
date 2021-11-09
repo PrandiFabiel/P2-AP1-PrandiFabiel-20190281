@@ -35,6 +35,7 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             {
                 foreach (var item in proyecto.Detalle)
                 {
+                    item.Tipo.TiempoAcumulado += item.Tiempo;
                     contexto.Entry(item.Tipo).State = EntityState.Modified;
                 }
 
