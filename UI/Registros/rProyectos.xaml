@@ -32,7 +32,7 @@
                         <TextBox x:Name = "RequerimientoTextBox" Text ="{Binding Requerimiento}" Width="190" Height="25" Margin="-20,-25,0,0"/>
 
                         <Label Content = "Tiempo(minutos)"  FontSize="13px" Margin="300,-80,1,1"  FontStyle="Normal" Width="121" Height="25"/>
-                        <TextBox x:Name = "TiempoTextBox" Text ="{Binding Cantidad}" Width="140" Height="25" Margin="330,-25,0,0"/>
+                        <TextBox x:Name = "TiempoTextBox" Text ="{Binding Tiempo}" Width="140" Height="25" Margin="330,-25,0,0"/>
 
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="AgregarFilaButton" Margin="10,10,0,0" Click = "AgregarFilaButton_Click">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using P2_AP1_PrandiFabiel_20190281.BLL;
+using P2_AP1_PrandiFabiel_20190281.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,60 @@ namespace P2_AP1_PrandiFabiel_20190281.UI.Consultas
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
+            List<Proyectos> Listado = new List<Proyectos>();
+
+            if(CriterioTextBox.Text.Trim().Length > 0)
+            {
+                switch (FiltroComboBox.SelectedIndex)
+                {
+                    case 0:
+                        try
+                        {
+                            if (DesdeDataPicker.SelectedDate != null)
+                                Listado = ProyectosBLL.GetList(
+                                    c => c.Fecha.Date >= DesdeDataPicker.SelectedDate &&
+                                    c.Fecha.Date <= HastaDatePicker.SelectedDate &&
+                                    c.ProyectoId == Utilidades.ToInt(CriterioTextBox.Text)
+                                    );
+
+                            else
+                                Listado = ProyectosBLL.GetList(e => e.ProyectoId == Utilidades.ToInt(CriterioTextBox.Text));
+                        }
+                        catch (FormatException)
+                        {
+
+                            MessageBox.Show("Ingrese un criterio valido", "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
+                        }
+                        break;
+
+                    case 1:
+                        try
+                        {
+                            if (DesdeDataPicker.SelectedDate != null)
+                                Listado = ProyectosBLL.GetList(
+                                    c => c.Fecha.Date >= DesdeDataPicker.SelectedDate &&
+                                    c.Fecha.Date <= HastaDatePicker.SelectedDate &&
+                                    c.Descripcion.ToLower().Contains(CriterioTextBox.Text.ToLower())
+                                    );
+
+                            else
+                                Listado = ProyectosBLL.GetList(e => e.Descripcion.ToLower().Contains(CriterioTextBox.Text.ToLower()));
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                        break; 
+                }
+            }
+            else
+            {
+                Listado = ProyectosBLL.GetList(c => true);
+            }
+
+            DatosDataGrid.ItemsSource = null;
+            DatosDataGrid.ItemsSource = Listado;
 
         }
     }
