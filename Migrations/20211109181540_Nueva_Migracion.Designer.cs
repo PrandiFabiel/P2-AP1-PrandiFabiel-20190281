@@ -9,8 +9,8 @@ using P2_AP1_PrandiFabiel_20190281.DAL;
 namespace P2_AP1_PrandiFabiel_20190281.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20211109004626_Cambiando_ElTipoDeDato_TiempoAcumulado")]
-    partial class Cambiando_ElTipoDeDato_TiempoAcumulado
+    [Migration("20211109181540_Nueva_Migracion")]
+    partial class Nueva_Migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
