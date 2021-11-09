@@ -112,11 +112,17 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             try
             {
                 var proyecto = contexto.Proyectos.Find(id);
-
                 if (proyecto != null)
                 {
+
+                    foreach (var item in proyecto.Detalle)
+                    {
+                        item.Tipo.TiempoAcumulado -= item.Tiempo;
+                        contexto.Entry(item.Tipo).State = EntityState.Modified;
+                    }
+
                     contexto.Proyectos.Remove(proyecto);
-                    paso = contexto.SaveChanges() > 0; 
+                    paso = contexto.SaveChanges() > 0;
                 }
             }
             catch (Exception)
@@ -126,7 +132,7 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             }
             finally
             {
-                contexto.Dispose(); 
+                contexto.Dispose();
             }
 
             return paso; 
