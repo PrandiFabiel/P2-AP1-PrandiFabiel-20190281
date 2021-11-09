@@ -111,18 +111,12 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
 
             try
             {
-                var proyecto = contexto.Proyectos.Find(id);
+                var proyecto = Buscar(id);
                 if (proyecto != null)
                 {
-
-                    foreach (var item in proyecto.Detalle)
-                    {
-                        item.Tipo.TiempoAcumulado -= item.Tiempo;
-                        contexto.Entry(item.Tipo).State = EntityState.Modified;
-                    }
-
                     contexto.Proyectos.Remove(proyecto);
                     paso = contexto.SaveChanges() > 0;
+                    Actualizar(proyecto);
                 }
             }
             catch (Exception)
@@ -206,6 +200,32 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
             }
 
             return proyecto; 
+        }
+
+        public static void Actualizar(Proyectos proyectos)
+        {
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                foreach (var item in proyectos.Detalle)
+                {
+                    var tarea = contexto.Tareas.Find(item.TareaId);
+                    tarea.TiempoAcumulado -= item.Tiempo;
+            
+                    contexto.Entry(tarea).State = EntityState.Modified;
+                    contexto.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose(); 
+            }
         }
     }
 }
