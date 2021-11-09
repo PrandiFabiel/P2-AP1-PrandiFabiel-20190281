@@ -62,6 +62,19 @@ namespace P2_AP1_PrandiFabiel_20190281.BLL
 
             try
             {
+                var proyectoAnt = contexto.Proyectos.Where(x => x.ProyectoId == proyecto.ProyectoId)
+                                                 .Include(x => x.Detalle)
+                                                 .ThenInclude(x => x.Tipo)
+                                                 .AsNoTracking()
+                                                 .SingleOrDefault();
+
+                foreach ( var item in proyectoAnt.Detalle)
+                {
+                    var tarea = contexto.Tareas.Find(item.Tipo.TareaId);
+                    tarea.TiempoAcumulado -= item.Tiempo;
+                    item.Tipo = tarea;
+                    contexto.Entry(item.Tipo).State = EntityState.Modified; 
+                }
                 contexto.Database.ExecuteSqlRaw($"Delete From ProyectosDetalle Where ProyectoId={proyecto.ProyectoId}");
 
                 foreach (var item in proyecto.Detalle)
